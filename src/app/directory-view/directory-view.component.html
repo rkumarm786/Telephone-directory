@@ -1,0 +1,17 @@
+<div class="content" role="main">
+
+    <div class="card">
+        <h2>Telephonic Directory</h2>
+        <input id="filter-name" type="text" [(ngModel)]="filterObject.name">
+        <input id="filter-mobile" type="number" [(ngModel)]="filterObject.mobile">
+        <ul>
+            <li *ngFor="let person of (persons | filter:filterObject)">
+                <span class="badge">{{person.name}}</span> {{person.mobile}}
+            </li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <app-directory-child-view></app-directory-child-view>
+    </div>
+</div>

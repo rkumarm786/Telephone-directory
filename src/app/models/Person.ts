@@ -1,11 +1,13 @@
 export class Person {
-    private _name:string;
-    private _mobile:number;
-    private _age:number;
-    private _address:string;
-    private _email:string;
+    public _id:number;
+    public _name:string;
+    public _mobile:number;
+    public _age:number;
+    public _address:string;
+    public _email:string;
 
-    constructor(name,mobile,age,address,email){
+    constructor(id,name,mobile,age,address,email){
+        this._id=id;
         this._name=name;
         this._mobile=mobile;
         this._age=age;
@@ -13,6 +15,9 @@ export class Person {
         this._email=email;
     }
     
+    get id(): number {
+        return this._id;
+    }
     get name(): string {
         return this._name;
     }

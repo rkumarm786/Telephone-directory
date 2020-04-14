@@ -1,1 +1,13 @@
-<p>directory-child-view works!</p>
+<h2>Selected Person</h2>
+<div *ngIf="renderedPerson">
+    <div *ngFor="let key of objectKeys(_person)">
+        <div *ngIf="key!='_id'">
+            <ng-template *ngIf="key=='_mobile'; else elseBlock"></ng-template>
+            <ng-template #elseBlock>{{key + ' : ' + _person[key]}}</ng-template>
+            <ng-template [ngIf]="key=='_mobile'">
+                <span>{{key}} : <input [value]="_person[key]" [(ngModel)]="_person[key]" type="number" [disabled]="!editMode"></span>
+                <button (click)="updatePerson()">{{!editMode ? 'Edit' : 'Save'}}</button>
+            </ng-template>
+        </div>
+    </div>
+</div>

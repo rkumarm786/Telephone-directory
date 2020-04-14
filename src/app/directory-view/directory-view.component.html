@@ -2,16 +2,18 @@
 
     <div class="card">
         <h2>Telephonic Directory</h2>
-        <input id="filter-name" type="text" [(ngModel)]="filterObject.name">
-        <input id="filter-mobile" type="number" [(ngModel)]="filterObject.mobile">
-        <ul>
+        <input id="filter-name" type="text" [(ngModel)]="filterObject.name" placeholder="Search using person name">
+        <input id="filter-mobile" type="number" [(ngModel)]="filterObject.mobile" placeholder="Search using person mobile">
+        
+        <ul class="persons">
             <li *ngFor="let person of (persons | filter:filterObject)">
-                <span class="badge">{{person.name}}</span> {{person.mobile}}
+              <span class="badge">{{person._name}}</span> {{person._mobile}}
+              <button class="" [class]="(_storedPerson && _storedPerson['_id']==person.id) ? 'action selected':'action un-selected'" title="Select person" (click)="selectPerson(person)">&#10004;</button>
             </li>
         </ul>
     </div>
 
     <div class="card">
-        <app-directory-child-view></app-directory-child-view>
+        <app-directory-child-view [renderedPerson]='_storedPerson ? _storedPerson : (persons | filter:filterObject)[0]' (updatePersonEvent)='updatePerson($event)'></app-directory-child-view>
     </div>
 </div>
